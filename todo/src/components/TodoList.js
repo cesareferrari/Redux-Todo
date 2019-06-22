@@ -2,11 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 class TodoList extends React.Component {
+  state = {
+    newTodo: ''
+  }
+
+  handleChanges = e => { 
+    this.setState({[e.target.name]: e.target.value });
+  }
+
   render() {
     return(
       <div>
         <h2>Todo list</h2>
-
 
         {this.props.todos.map((todo, index) => {
           return(
@@ -16,6 +23,21 @@ class TodoList extends React.Component {
             </div>
           )
         })}
+
+        <br />
+
+      <input
+        type="text"
+        name="newTodo"
+        value={this.state.newTodo}
+        placeholder="Add new Todo"
+        onChange={this.handleChanges}
+      />
+
+      <button>Add Todo</button>
+
+
+
       </div>
     )
   }
